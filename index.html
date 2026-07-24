@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,17 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Main Application Wrapper -->
   <div id="app" class="theme-edevlet">
-    
+
     <!-- e-Devlet Official Header -->
     <header class="gov-header" id="gov-header">
       <div class="gov-header-content">
         <div class="gov-badge">
           <span class="gov-crest">🔴</span>
-          <span class="gov-logo-text">türkiye<span class="gov-logo-sub">.gov.tr</span></span>
+          <span class="gov-logo-text">köşektaş<span class="gov-logo-sub">.gov.tr</span></span>
         </div>
         <div class="gov-title">T.C. KÖŞEKTAŞ YÜKSEK CEMİYETİ PORTALI</div>
       </div>
@@ -35,22 +37,25 @@
         <form id="form-login" class="auth-form">
           <h2>Cemiyet Kimlik Doğrulama</h2>
           <p class="form-desc">Lütfen kütük bilgilerinizi kullanarak kimliğinizi doğrulayın.</p>
-          
+
           <div class="input-group">
             <label for="login-name">Ad Soyad</label>
             <input type="text" id="login-name" placeholder="Örn: Mustafa Çöl" required autocomplete="name">
           </div>
-          
+
           <div class="input-group">
-            <label for="login-tc">TC Kimlik No İlk 3 Harfi <span class="help-trigger" id="login-tc-help" popovertarget="tc-popover">❔</span></label>
+            <label for="login-tc">TC Kimlik No İlk 3 Harfi <span class="help-trigger" id="login-tc-help"
+                popovertarget="tc-popover">❔</span></label>
             <div class="input-wrapper">
-              <input type="text" id="login-tc" placeholder="Örn: TCK" maxlength="3" required autocomplete="current-password">
+              <input type="text" id="login-tc" placeholder="Örn: TCK" maxlength="3" required
+                autocomplete="current-password">
             </div>
           </div>
 
           <div id="tc-popover" popover class="info-popover">
             <h4>Güvenlik Protokolü Uyarısı</h4>
-            <p>Devlet sırrı ve kütük gizliliği nedeniyle rakam değil, <strong>sadece ilk 3 HARF</strong> kabul edilmektedir. (Örn: EVL, TCK, CAN...)</p>
+            <p>Devlet sırrı ve kütük gizliliği nedeniyle rakam değil, <strong>sadece ilk 3 HARF</strong> kabul
+              edilmektedir. (Örn: EVL, TCK, CAN...)</p>
           </div>
 
           <button type="submit" class="btn-submit" id="btn-login-submit">Kimlik Doğrula & Giriş Yap</button>
@@ -60,17 +65,17 @@
         <form id="form-register" class="auth-form hidden">
           <h2>Yeni Kütük & Cemiyet Kaydı</h2>
           <p class="form-desc">Köşektaş köyü kütüğüne evlilik veya bağ bağıyla kaydolun.</p>
-          
+
           <div class="input-group">
             <label for="reg-name">Ad Soyad</label>
             <input type="text" id="reg-name" placeholder="Örn: Yazgı Su Çöl" required autocomplete="name">
           </div>
-          
+
           <div class="input-group">
             <label for="reg-tc">TC Kimlik No İlk 3 Harfi (Erişim Kodu)</label>
             <input type="text" id="reg-tc" placeholder="Örn: EVL" maxlength="3" required autocomplete="new-password">
           </div>
-          
+
           <button type="submit" class="btn-submit" id="btn-register-submit">Kütük Tescil Talebi Gönder</button>
         </form>
       </div>
@@ -99,7 +104,8 @@
           <div class="badge-wrapper">
             <span id="user-display-title" class="badge">Köşektaş'ın En yeni üyesi...</span>
           </div>
-          <p class="dash-card-desc">Evlilik akdi ile Nevşehir Hacıbektaş Köşektaş köyü kütüğüne tesciliniz tamamlanmıştır. Tebrik ederiz!</p>
+          <p class="dash-card-desc">Evlilik akdi ile Nevşehir Hacıbektaş Köşektaş köyü kütüğüne tesciliniz
+            tamamlanmıştır. Tebrik ederiz!</p>
         </section>
 
         <!-- 12 Rules Accordion Card -->
@@ -129,7 +135,7 @@
             <button id="btn-play-saz" class="btn-play-saz" type="button">Marşı Dinle 🎙️</button>
             <div id="playback-indicator" class="pulse-light hidden"></div>
           </div>
-          
+
           <div class="lyrics-container">
             <pre id="lyrics-scroller">
 ✨ KÖŞEKTAŞ MARŞI ✨
@@ -155,7 +161,8 @@ Köşektaş'ım insanlığın yurdudur!
     </div>
 
   </div>
-  
+
   <script src="app.js"></script>
 </body>
+
 </html>
