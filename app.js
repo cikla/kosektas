@@ -57,7 +57,7 @@ formLogin.addEventListener('submit', (e) => {
   if (matchedUser) {
     enterDashboard(matchedUser);
   } else {
-    alert("❌ KİMLİK DOĞRULAMA HATASI: Belirtilen kütük kaydı bulunamadı. Lütfen bilgilerinizi (özellikle TC'nin ilk 3 harfini!) kontrol edin.");
+    alert("❌ KİMLİK DOĞRULAMA HATASI: Belirtilen kütük kaydı bulunamadı. Lütfen bilgilerinizi (özellikle TC'nin ilk 3 rakamını!) kontrol edin.");
   }
 });
 
