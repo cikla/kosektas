@@ -3,15 +3,17 @@
 // Preset users directly specified in design specification
 const PRESET_USERS = [
   { name: "Mustafa Çöl", tcPrefix: "136", title: "Köşektaş'ın En Alevisi, En Kabadayısı, En Yakışıklısı, En Şakircisi" },
-  { name: "Yazgı Su Çöl", tcPrefix: "EVL", title: "Köşektaş'ın En yeni üyesi, En Asil, En Moderni, En Güzeli" },
   { name: "Mustafa Enes Berk", tcPrefix: "119", title: "Köşektaş'ın En Kafkaslı, En Tokatlısı, En Çapkını" }
 ];
 
 // Initialize users from LocalStorage or use Presets
 function getUsers() {
   const local = localStorage.getItem('kosektas_users');
-  if (!local) {
+  const dbVer = localStorage.getItem('kosektas_db_version');
+  
+  if (!local || dbVer !== '2') {
     localStorage.setItem('kosektas_users', JSON.stringify(PRESET_USERS));
+    localStorage.setItem('kosektas_db_version', '2');
     return PRESET_USERS;
   }
   return JSON.parse(local);
@@ -75,10 +77,15 @@ formRegister.addEventListener('submit', (e) => {
   }
 
   // Custom generated titles for newly registered members
+  let userTitle = "Köşektaş'ın En Yeni Üyesi (Hürmetkâr & Gayretkeş)";
+  if (nameInput.toLowerCase() === "yazgı su çöl") {
+    userTitle = "Köşektaş'ın En yeni üyesi, En Asil, En Moderni, En Güzeli";
+  }
+
   const newUser = {
     name: nameInput,
     tcPrefix: tcInput,
-    title: "Köşektaş'ın En Yeni Üyesi (Hürmetkâr & Gayretkeş)"
+    title: userTitle
   };
 
   users.push(newUser);
