@@ -32,9 +32,9 @@ The application merges two distinct visual and thematic directions:
 - **JSON User DB:**
   ```javascript
   const PRESET_USERS = [
-    { name: "Can Köşektaşlı", tcPrefix: "ABC", title: "Köşektaş'ın En Asili" },
-    { name: "Mert Ciklabakkal", tcPrefix: "EVL", title: "Köşektaş'ın En Alaveisi (Yüce Hami)" },
-    { name: "Taze Damat", tcPrefix: "EVL", title: "Köşektaş'ın En Ala Damadı" }
+    { name: "Mustafa Çöl", tcPrefix: "136", title: "Köşektaş'ın En Alevisi, En Kabadayısı, En Yakışıklısı, En Şakircisi" },
+    { name: "Yazgı Su Çöl", tcPrefix: "EVL", title: "Köşektaş'ın En yeni üyesi, En Asil, En Moderni, En Güzeli" },
+    { name: "Enes Berk", tcPrefix: "119", title: "Köşektaş'ın En Kafkaslı, En Tokatlısı, En Çapkını" }
   ];
   ```
 - **Login Matching:** Matches input Name & Surname and the first 3 letters of the TC Identification Number. (A tooltip explains that for state secrecy, letters like `EVL`, `ABC`, `TCK` are required instead of digits).
