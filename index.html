@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-Köşektaş Kütük ve Cemiyet Portal Girişi</title>
+  <meta name="description" content="e-Köşektaş: Köşektaş Köyü Cemiyet ve Kütük Doğrulama Sistemi">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main Application Wrapper -->
+  <div id="app" class="theme-edevlet">
+    
+    <!-- e-Devlet Official Header -->
+    <header class="gov-header" id="gov-header">
+      <div class="gov-header-content">
+        <div class="gov-badge">
+          <span class="gov-crest">🔴</span>
+          <span class="gov-logo-text">türkiye<span class="gov-logo-sub">.gov.tr</span></span>
+        </div>
+        <div class="gov-title">T.C. KÖŞEKTAŞ YÜKSEK CEMİYETİ PORTALI</div>
+      </div>
+    </header>
+
+    <!-- Authentication Area -->
+    <main class="auth-container" id="auth-container">
+      <div class="auth-box">
+        <div class="auth-tabs">
+          <button id="tab-login" class="tab-btn active" type="button">Giriş Yap</button>
+          <button id="tab-register" class="tab-btn" type="button">Cemiyete Kayıt Ol</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="form-login" class="auth-form">
+          <h2>Cemiyet Kimlik Doğrulama</h2>
+          <p class="form-desc">Lütfen kütük bilgilerinizi kullanarak kimliğinizi doğrulayın.</p>
+          
+          <div class="input-group">
+            <label for="login-name">Ad Soyad</label>
+            <input type="text" id="login-name" placeholder="Örn: Mustafa Çöl" required autocomplete="name">
+          </div>
+          
+          <div class="input-group">
+            <label for="login-tc">TC Kimlik No İlk 3 Harfi <span class="help-trigger" id="login-tc-help" popovertarget="tc-popover">❔</span></label>
+            <div class="input-wrapper">
+              <input type="text" id="login-tc" placeholder="Örn: TCK" maxlength="3" required autocomplete="current-password">
+            </div>
+          </div>
+
+          <div id="tc-popover" popover class="info-popover">
+            <h4>Güvenlik Protokolü Uyarısı</h4>
+            <p>Devlet sırrı ve kütük gizliliği nedeniyle rakam değil, <strong>sadece ilk 3 HARF</strong> kabul edilmektedir. (Örn: EVL, TCK, CAN...)</p>
+          </div>
+
+          <button type="submit" class="btn-submit" id="btn-login-submit">Kimlik Doğrula & Giriş Yap</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="form-register" class="auth-form hidden">
+          <h2>Yeni Kütük & Cemiyet Kaydı</h2>
+          <p class="form-desc">Köşektaş köyü kütüğüne evlilik veya bağ bağıyla kaydolun.</p>
+          
+          <div class="input-group">
+            <label for="reg-name">Ad Soyad</label>
+            <input type="text" id="reg-name" placeholder="Örn: Yazgı Su Çöl" required autocomplete="name">
+          </div>
+          
+          <div class="input-group">
+            <label for="reg-tc">TC Kimlik No İlk 3 Harfi (Erişim Kodu)</label>
+            <input type="text" id="reg-tc" placeholder="Örn: EVL" maxlength="3" required autocomplete="new-password">
+          </div>
+          
+          <button type="submit" class="btn-submit" id="btn-register-submit">Kütük Tescil Talebi Gönder</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>

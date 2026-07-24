@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;700;800&display=swap');
+
+:root {
+  /* Common Variables */
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cinzel', Georgia, serif;
+  
+  /* e-Devlet Red Theme Variables */
+  --gov-bg: #f9f9f9;
+  --gov-red: #cc0000;
+  --gov-red-hover: #b30000;
+  --gov-border: #dcdcdc;
+  --gov-text: #333333;
+  --gov-text-muted: #666666;
+  --gov-card-bg: #ffffff;
+  
+  /* Anatolian Mystical Theme Variables */
+  --ana-bg: #09090b;
+  --ana-dark: #121214;
+  --ana-crimson: #7f0000;
+  --ana-crimson-glow: rgba(127, 0, 0, 0.4);
+  --ana-gold: #e2b13c;
+  --ana-gold-hover: #f1c40f;
+  --ana-card-bg: rgba(20, 20, 25, 0.7);
+  --ana-text: #f4f4f5;
+  --ana-text-muted: #a1a1aa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--gov-bg);
+  color: var(--gov-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   e-Devlet Header Styles
+   ========================================================================== */
+.gov-header {
+  background-color: #ffffff;
+  border-bottom: 3px solid var(--gov-red);
+  padding: 12px 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.gov-header-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gov-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gov-crest {
+  font-size: 20px;
+}
+
+.gov-logo-text {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  color: var(--gov-text);
+}
+
+.gov-logo-sub {
+  color: var(--gov-red);
+  font-weight: 400;
+}
+
+.gov-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gov-text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Authentication Section
+   ========================================================================== */
+.auth-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.auth-box {
+  background-color: var(--gov-card-bg);
+  border: 1px solid var(--gov-border);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
+}
+
+.auth-tabs {
+  display: flex;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid var(--gov-border);
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 16px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  color: var(--gov-text-muted);
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--gov-card-bg);
+  color: var(--gov-red);
+  border-bottom: 2px solid var(--gov-red);
+}
+
+.auth-form {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-form h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gov-text);
+  margin-bottom: 4px;
+}
+
+.form-desc {
+  font-size: 13px;
+  color: var(--gov-text-muted);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gov-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.help-trigger {
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--gov-red);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  border: 1px solid var(--gov-border);
+  border-radius: 6px;
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: var(--gov-red);
+  box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+}
+
+.btn-submit {
+  background-color: var(--gov-red);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--gov-red-hover);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Popover (Native Overlay)
+   ========================================================================== */
+.info-popover {
+  border: 1px solid var(--gov-border);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+  max-width: 280px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  color: var(--gov-text);
+}
+
+.info-popover h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gov-red);
+  margin-bottom: 6px;
+}
+
+.info-popover p {
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media (max-width: 480px) {
+  .gov-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .auth-form {
+    padding: 24px;
+  }
+}
