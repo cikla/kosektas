@@ -266,6 +266,9 @@ document.getElementById('btn-logout').addEventListener('click', () => {
   const authContainer = document.getElementById('auth-container');
   const dashboard = document.getElementById('dashboard');
   
+  // Stop the music if running
+  stopFolkLoop();
+  
   app.classList.remove('theme-anatolian');
   app.classList.add('theme-edevlet');
   
@@ -277,4 +280,113 @@ document.getElementById('btn-logout').addEventListener('click', () => {
   document.getElementById('login-name').value = '';
   document.getElementById('login-tc').value = '';
 });
+
+// ==========================================================================
+// Web Audio API Saz Synthesizer & Anthem Player
+// ==========================================================================
+let audioCtx = null;
+let synthInterval = null;
+let isPlayingSaz = false;
+let noteIndex = 0;
+
+// Traditional folk melody progression (simplified Uzun İnce Bir Yoldayım)
+const TUNE = [
+  293.66, 293.66, 329.63, 349.23, 349.23, 329.63, 293.66, 261.63,
+  293.66, 233.08, 220.00, 220.00, 220.00, 220.00
+];
+
+function initAudio() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+// Simulates a double-stringed (çift telli) saz string pluck using Karpus-Strong-ish synth
+function playSazPluck(frequency, startTime) {
+  if (!audioCtx) return;
+  
+  // Create nodes
+  const osc1 = audioCtx.createOscillator();
+  const osc2 = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+  
+  // Double string detuning (creates beautiful traditional resonance chorus)
+  osc1.type = 'sawtooth';
+  osc1.frequency.setValueAtTime(frequency, startTime);
+  osc1.detune.setValueAtTime(6, startTime); // detune +6 cents
+  
+  osc2.type = 'triangle';
+  osc2.frequency.setValueAtTime(frequency, startTime);
+  osc2.detune.setValueAtTime(-6, startTime); // detune -6 cents
+  
+  // Plucked string filter damping (high-freqs decay faster)
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(frequency * 4, startTime);
+  filter.frequency.exponentialRampToValueAtTime(frequency * 1.5, startTime + 0.5);
+  filter.Q.setValueAtTime(1.5, startTime);
+  
+  // Pluck gain envelope
+  gainNode.gain.setValueAtTime(0.001, startTime);
+  // Pluck attack
+  gainNode.gain.linearRampToValueAtTime(0.35, startTime + 0.015);
+  // Natural decay
+  gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.7);
+  
+  // Connections
+  osc1.connect(filter);
+  osc2.connect(filter);
+  filter.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+  
+  // Start and stop
+  osc1.start(startTime);
+  osc1.stop(startTime + 0.8);
+  osc2.start(startTime);
+  osc2.stop(startTime + 0.8);
+}
+
+function startFolkLoop() {
+  if (!audioCtx) initAudio();
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  
+  isPlayingSaz = true;
+  document.getElementById('btn-play-saz').textContent = "Sazı Durdur ⏸";
+  document.getElementById('playback-indicator').classList.remove('hidden');
+  
+  const scroller = document.getElementById('lyrics-scroller');
+  const container = document.querySelector('.lyrics-container');
+  
+  synthInterval = setInterval(() => {
+    const freq = TUNE[noteIndex % TUNE.length];
+    playSazPluck(freq, audioCtx.currentTime);
+    
+    // Lyric Autoscrolling interaction
+    noteIndex++;
+    if (container) {
+      container.scrollTop = (noteIndex * 15) % (scroller.scrollHeight - 100);
+    }
+  }, 420);
+}
+
+function stopFolkLoop() {
+  isPlayingSaz = false;
+  document.getElementById('btn-play-saz').textContent = "Sazı Çal 🪕";
+  const indicator = document.getElementById('playback-indicator');
+  if (indicator) indicator.classList.add('hidden');
+  
+  if (synthInterval) {
+    clearInterval(synthInterval);
+    synthInterval = null;
+  }
+}
+
+document.getElementById('btn-play-saz').addEventListener('click', () => {
+  if (isPlayingSaz) {
+    stopFolkLoop();
+  } else {
+    startFolkLoop();
+  }
+});
+
 
