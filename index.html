@@ -75,6 +75,43 @@
       </div>
     </main>
 
+    <!-- Immersive Dashboard Portal (Hidden initially) -->
+    <div id="dashboard" class="hidden">
+      <!-- Dashboard Header -->
+      <header class="dash-header">
+        <div class="dash-header-content">
+          <div class="dash-logo">
+            <span class="dash-crest-icon">✴️</span>
+            <span class="dash-logo-text">e-KÖŞEKTAŞ <span class="dash-logo-sub">CEMİYETİ</span></span>
+          </div>
+          <button id="btn-logout" class="btn-logout" type="button">Portal Güvenli Çıkış 🚪</button>
+        </div>
+      </header>
+
+      <!-- Dashboard Body Grid -->
+      <main class="dash-grid-container">
+        <!-- Profile Card -->
+        <section class="dash-card profile-card" aria-labelledby="profile-title">
+          <div class="mystical-symbol">❂</div>
+          <h3 id="profile-title">Köşektaş Sicil Tescil Beyanı</h3>
+          <h1 id="user-display-name">Yazgı Su Çöl</h1>
+          <div class="badge-wrapper">
+            <span id="user-display-title" class="badge">Köşektaş'ın En yeni üyesi...</span>
+          </div>
+          <p class="dash-card-desc">Evlilik akdi ile Nevşehir Hacıbektaş Köşektaş köyü kütüğüne tesciliniz tamamlanmıştır. Tebrik ederiz!</p>
+        </section>
+
+        <!-- 12 Rules Accordion Card -->
+        <section class="dash-card rules-card" aria-labelledby="rules-title">
+          <h3 id="rules-title">İyi Bir Köşektaşlı Olmanın 12 Altın Kuralı</h3>
+          <p class="dash-card-desc">Cemiyet üyelerinin uyması gereken kadim töre ve kurallar zinciri:</p>
+          <div id="rules-container" class="accordion-list">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+      </main>
+    </div>
+
   </div>
   
   <script src="app.js"></script>

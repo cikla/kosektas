@@ -92,8 +92,67 @@ formRegister.addEventListener('submit', (e) => {
   document.getElementById('login-tc').value = tcInput;
 });
 
-// Placeholder for transition to dashboard (fully implemented in Task 3)
+// Good Köşektaşlı 12 Golden Rules list
+const RULES = [
+  "Sazın tellerine dokunmadan güne başlama (Anadolu dervişinin sabah ritüeli).",
+  "Nevşehir'de her yolun Hacıbektaş'a, her kalbin Köşektaş'a çıktığını unutma.",
+  "Köyün kuzeyindeki deve ve köşek şeklindeki kutsal taşları ziyaret edip beddua koruma duası okumak.",
+  "Cemiyet toplantılarına asla eli boş (özellikle Hacıbektaş üzümü veya Nevşehir patatesi olmadan) gelmemek.",
+  "Kütüğe yeni geçmiş olmanın verdiği tatlı ezikliği, Köşektaş köyünü her mecliste aşırı yücelterek kapatmak.",
+  "Köşektaş'ın geleceğine dair her projede 'bizim köyün insanı merttir' diyerek katkıda bulunmak.",
+  "Saz tınısını duyduğunda elindeki işi gücü bırakıp derin bir tefekküre dalmak.",
+  "Köyün bilge çınarlarının ve aşıklık geleneğinin önünde saygıyla eğilmek.",
+  "Nevşehir pekmezini şifa niyetine içip 'Köşektaş iksiri' olarak tüm dünyaya anlatmak.",
+  "Köy düğünlerinde halayın başını çekip, cemiyet disiplinini asla bozmamak.",
+  "Alevi-Bektaşi kültürünün barışçıl, hoşgörülü ve aydınlık felsefesini her ortamda yaşatmak.",
+  "Köşektaş Özel Cemiyeti'ne dahil olma şerefini her sabah aynaya bakarak gururla kutlamak."
+];
+
+// Handles state transition into dashboard
 function enterDashboard(user) {
-  console.log("Logged in successfully:", user);
-  alert(`Cemiyete Hoş Geldiniz: ${user.name}\nUnvanınız: ${user.title}`);
+  const app = document.getElementById('app');
+  const govHeader = document.getElementById('gov-header');
+  const authContainer = document.getElementById('auth-container');
+  const dashboard = document.getElementById('dashboard');
+  
+  // Transition class names for beautiful fading
+  app.classList.remove('theme-edevlet');
+  app.classList.add('theme-anatolian');
+  
+  govHeader.classList.add('hidden');
+  authContainer.classList.add('hidden');
+  dashboard.classList.remove('hidden');
+  
+  // Populate User info
+  document.getElementById('user-display-name').textContent = user.name;
+  document.getElementById('user-display-title').textContent = user.title;
+  
+  // Dynamically render 12 Rules
+  const rulesContainer = document.getElementById('rules-container');
+  rulesContainer.innerHTML = RULES.map((rule, idx) => `
+    <details class="rule-details" name="kosektas-rules">
+      <summary>Kural ${idx + 1}: ${rule.substring(0, 42)}...</summary>
+      <p>${rule}</p>
+    </details>
+  `).join('');
 }
+
+// Log-out Handler
+document.getElementById('btn-logout').addEventListener('click', () => {
+  const app = document.getElementById('app');
+  const govHeader = document.getElementById('gov-header');
+  const authContainer = document.getElementById('auth-container');
+  const dashboard = document.getElementById('dashboard');
+  
+  app.classList.remove('theme-anatolian');
+  app.classList.add('theme-edevlet');
+  
+  govHeader.classList.remove('hidden');
+  authContainer.classList.remove('hidden');
+  dashboard.classList.add('hidden');
+  
+  // Clear inputs
+  document.getElementById('login-name').value = '';
+  document.getElementById('login-tc').value = '';
+});
+
