@@ -135,7 +135,129 @@ function enterDashboard(user) {
       <p>${rule}</p>
     </details>
   `).join('');
+
+  // Draw the official certificate
+  drawCertificate(user);
 }
+
+// Draw the official Köşektaş Certificate on Canvas
+function drawCertificate(user) {
+  const canvas = document.getElementById('cert-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // 1. Draw Paper background
+  ctx.fillStyle = '#fdfbf7';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 2. Outer border (Crimson)
+  ctx.strokeStyle = '#7f0000';
+  ctx.lineWidth = 8;
+  ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+  
+  // Inner border (Gold)
+  ctx.strokeStyle = '#e2b13c';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(18, 18, canvas.width - 36, canvas.height - 36);
+  
+  // 3. Header Text
+  ctx.fillStyle = '#7f0000';
+  ctx.font = 'bold 20px "Cinzel", Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('KÖŞEKTAŞ CEMİYETİ ŞAHADETNAMESİ', canvas.width / 2, 60);
+  
+  // Subheader
+  ctx.fillStyle = '#666666';
+  ctx.font = 'italic 12px "Outfit", sans-serif';
+  ctx.fillText('Nevşehir Hacıbektaş Köşektaş Köyü Kütük Kabul Beyannamesi', canvas.width / 2, 85);
+  
+  // Decorative line
+  ctx.strokeStyle = '#e2b13c';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(150, 95);
+  ctx.lineTo(450, 95);
+  ctx.stroke();
+  
+  // 4. Body text
+  ctx.fillStyle = '#333333';
+  ctx.font = '14px "Outfit", sans-serif';
+  ctx.fillText('İşbu vesika ile aşağıda ismi beyan edilen cemiyet üyesinin,', canvas.width / 2, 140);
+  ctx.fillText('evlilik ve bağ akdi ile kutsal Köşektaş köyü kütüğüne', canvas.width / 2, 162);
+  ctx.fillText('kaydının tescil edildiği resmen beyan olunur:', canvas.width / 2, 184);
+  
+  // Name (Large, Crimson, bold)
+  ctx.fillStyle = '#7f0000';
+  ctx.font = 'bold 26px "Cinzel", Georgia, serif';
+  ctx.fillText(user.name.toUpperCase(), canvas.width / 2, 235);
+  
+  // Title (Italic, Gold)
+  ctx.fillStyle = '#b8860b';
+  ctx.font = 'italic 13px "Outfit", sans-serif';
+  ctx.fillText(`"${user.title}"`, canvas.width / 2, 260);
+  
+  // Registry ID (Mizahi)
+  const hash = user.name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const registryId = `K-38-50-ALEV-${hash % 9999}`;
+  ctx.fillStyle = '#777777';
+  ctx.font = 'bold 11px monospace';
+  ctx.fillText(`KÜTÜK SİCİL NO: ${registryId}`, canvas.width / 2, 290);
+  
+  // 5. Official Seal (Bottom Left)
+  ctx.strokeStyle = 'rgba(127, 0, 0, 0.75)';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(100, 340, 32, 0, 2 * Math.PI);
+  ctx.stroke();
+  
+  // Inner ring of seal
+  ctx.strokeStyle = 'rgba(127, 0, 0, 0.5)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.arc(100, 340, 27, 0, 2 * Math.PI);
+  ctx.stroke();
+  
+  ctx.fillStyle = 'rgba(127, 0, 0, 0.85)';
+  ctx.font = 'bold 7px "Outfit", sans-serif';
+  ctx.fillText('KÖŞEKTAŞ', 100, 330);
+  ctx.fillText('MUHTARLIĞI', 100, 342);
+  ctx.font = 'bold 8px "Outfit", sans-serif';
+  ctx.fillText('1928', 100, 355);
+  
+  // 6. Signatures (Bottom Right)
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 11px "Outfit", sans-serif';
+  ctx.fillText('Yüksek Heyet Reisi', canvas.width - 120, 325);
+  
+  ctx.font = 'italic 10px Georgia, serif';
+  ctx.fillText('Mustafa Çöl', canvas.width - 120, 342);
+  
+  // Handwritten-like scribble line
+  ctx.strokeStyle = '#444444';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(canvas.width - 160, 355);
+  ctx.quadraticCurveTo(canvas.width - 120, 345, canvas.width - 80, 360);
+  ctx.stroke();
+}
+
+// Download Button Event Listener
+document.getElementById('btn-download-cert').addEventListener('click', () => {
+  const canvas = document.getElementById('cert-canvas');
+  if (!canvas) return;
+  
+  // Trigger download
+  const link = document.createElement('a');
+  link.download = 'kosektas_kutu_sahadetnamesi.png';
+  
+  // Make sure to specify PNG mime-type
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+});
+
 
 // Log-out Handler
 document.getElementById('btn-logout').addEventListener('click', () => {

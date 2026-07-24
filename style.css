@@ -570,6 +570,57 @@ body {
   }
 }
 
+/* Certificate Card Specifics */
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.canvas-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+#cert-canvas {
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--ana-gold);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  background-color: #fff9f0;
+}
+
+.btn-download-cert {
+  background: linear-gradient(135deg, var(--ana-gold) 0%, #b8860b 100%);
+  color: #121214;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(226, 177, 60, 0.2);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.btn-download-cert:hover {
+  background: linear-gradient(135deg, var(--ana-gold-hover) 0%, var(--ana-gold) 100%);
+  box-shadow: 0 6px 20px rgba(226, 177, 60, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-download-cert:active {
+  transform: scale(0.98);
+}
+
 /* ==========================================================================
    Media Queries Dashboard
    ========================================================================== */
